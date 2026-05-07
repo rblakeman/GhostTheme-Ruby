@@ -1,0 +1,30 @@
+{{!-- Wrap with default.hbs to get header, footer, and theme styling --}}
+{{!< default}}
+
+<main class="site-main gh-outer">
+    <div class="gh-inner">
+        <section class="error-content">
+            <h1 class="error-code">{{statusCode}}</h1>
+            <p class="error-message">
+                {{#if errorMessage}}
+                    {{errorMessage}}
+                {{else}}
+                    Page not found
+                {{/if}}
+            </p>
+            <a class="gh-btn gh-primary-btn" href="{{@site.url}}">Go home</a>
+        </section>
+    </div>
+</main>
+
+{{!-- Fixes 404 content centering --}}
+<style>
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 50vh;
+}
+</style>
