@@ -6,37 +6,51 @@
 
     <article class="gh-article {{post_class}}">
 
-        <header class="gh-article-header gh-canvas">
-            <span class="gh-article-meta"{{#if primary_tag.accent_color}} style="--tag-color: {{primary_tag.accent_color}};"{{/if}}>
-            {{{t "By {authors}" authors=(authors) }}}
-                {{#if primary_tag}}
-                    {{{t "in {primaryTag}" primaryTag=(concat "<a class=\"gh-article-tag\" href=\"" primary_tag.url "\">" primary_tag.name "</a>")}}}
+        {{#if access}}
+
+            <header class="gh-article-header gh-canvas">
+                <span class="gh-article-meta"{{#if primary_tag.accent_color}} style="--tag-color: {{primary_tag.accent_color}};"{{/if}}>
+                {{{t "By {authors}" authors=(authors) }}}
+                    {{#if primary_tag}}
+                        {{{t "in {primaryTag}" primaryTag=(concat "<a class=\"gh-article-tag\" href=\"" primary_tag.url "\">" primary_tag.name "</a>")}}}
+                    {{/if}}
+                    —
+                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                </span>
+
+                <h1 class="gh-article-title">{{title}}</h1>
+
+                {{#if custom_excerpt}}
+                    <p class="gh-article-excerpt">{{custom_excerpt}}</p>
                 {{/if}}
-                —
-                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
-            </span>
 
-            <h1 class="gh-article-title">{{title}}</h1>
+                {{> "post-image"}}
+            </header>
 
-            {{#if custom_excerpt}}
-                <p class="gh-article-excerpt">{{custom_excerpt}}</p>
-            {{/if}}
+            <div class="gh-content gh-canvas">
+                {{content}}
+            </div>
 
-            {{> "post-image"}}
-        </header>
+        {{else}}
 
-        <div class="gh-content gh-canvas">
-            {{content}}
-        </div>
+            <div class="gh-content gh-canvas">
+                <p>This post is for members only. <a href="#/portal/signin" data-portal="signin">Sign in</a> to view it.</p>
+            </div>
+
+        {{/if}}
 
     </article>
 
-    {{> "post-navigation"}}
+    {{#if access}}
+        {{> "post-navigation"}}
+    {{/if}}
 
     {{#if comments}}
-        <div class="gh-comments gh-canvas">
-            {{comments}}
-        </div>
+        {{#if access}}
+            <div class="gh-comments gh-canvas">
+                {{comments}}
+            </div>
+        {{/if}}
     {{/if}}
 
     {{/post}}
