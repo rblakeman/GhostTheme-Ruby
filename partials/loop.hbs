@@ -1,3 +1,4 @@
+{{#if access}}
 <article class="{{post_class}} u-shadow"{{#if primary_tag.accent_color}} style="--tag-color: {{primary_tag.accent_color}};"{{/if}}>
 <a class="post-link" href="{{url}}">
     {{#if feature_image}}
@@ -61,3 +62,4 @@
     </footer>
 </a>
 </article>
+{{/if}}
