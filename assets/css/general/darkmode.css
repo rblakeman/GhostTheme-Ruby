@@ -60,3 +60,16 @@ html.dark img,
 html.dark video {
     filter: brightness(0.9);
 }
+
+html.dark .gh-head-logo,
+html.dark .gh-head-logo a,
+html.dark .gh-head .nav a,
+html.dark .gh-head-link {
+    color: var(--color-primary-text);
+}
+
+html.dark .gh-btn,
+html.dark .gh-primary-btn,
+html.dark .gh-head-btn.gh-btn {
+    color: #fff;
+}
