@@ -19,6 +19,10 @@
         } catch (e) {}
     }
 
+    function getGhostIframes() {
+        return document.querySelectorAll('iframe[srcdoc]');
+    }
+
     function trackIframe(iframe) {
         if (iframe.dataset.dmTracked === '1') return;
         iframe.dataset.dmTracked = '1';
@@ -28,9 +32,9 @@
     }
 
     function syncAllIframes() {
-        document.querySelectorAll('#ghost-comments-root iframe').forEach(trackIframe);
         var dark = isDark();
-        document.querySelectorAll('#ghost-comments-root iframe').forEach(function (iframe) {
+        getGhostIframes().forEach(function (iframe) {
+            trackIframe(iframe);
             paintIframe(iframe, dark);
         });
     }
@@ -57,8 +61,7 @@
         document.cookie = 'darkmode-prefered=' + next + ';path=/;max-age=31536000;samesite=lax';
     });
 
-    var iframeHost = document.querySelector('.gh-comments') || document.body;
-    new MutationObserver(syncAllIframes).observe(iframeHost, {childList: true, subtree: true});
+    new MutationObserver(syncAllIframes).observe(document.body, {childList: true, subtree: true});
     syncAllIframes();
 })();
 </script>
