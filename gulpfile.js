@@ -56,8 +56,13 @@ function css(done) {
 }
 
 function getJsFiles(version) {
+    const libDir = `${sharedThemeAssetsPath}/assets/js/${version}/lib`;
     const jsFiles = [
-        src(`${sharedThemeAssetsPath}/assets/js/${version}/lib/**/*.js`),
+        src(`${libDir}/vendor/imagesloaded.pkgd.min.js`),
+        src(`${libDir}/vendor/photoswipe.min.js`),
+        src(`${libDir}/vendor/photoswipe-ui-default.min.js`),
+        src(`${libDir}/vendor/reframe.min.js`),
+        src(`${libDir}/*.js`),
         src(`${sharedThemeAssetsPath}/assets/js/${version}/main.js`),
     ];
 
