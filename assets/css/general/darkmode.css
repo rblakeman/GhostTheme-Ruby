@@ -1,0 +1,62 @@
+.dm-toggle .dm-icon-sun {
+    display: none;
+}
+
+.dm-toggle .dm-icon-moon {
+    display: block;
+}
+
+html.dark .dm-toggle .dm-icon-moon {
+    display: none;
+}
+
+html.dark .dm-toggle .dm-icon-sun {
+    display: block;
+}
+
+html.dark {
+    color-scheme: dark;
+
+    --primary-text-color: #e6e6e6;
+    --secondary-text-color: #9a9a9a;
+    --white-color: #1a1a1a;
+    --light-gray-color: #2a2a2a;
+    --mid-gray-color: #3a3a3a;
+    --dark-gray-color: #e6e6e6;
+    --black-color: #fff;
+    --shadow-base: 0 0 10px rgba(0, 0, 0, 0.4);
+
+    --color-primary-text: #e6e6e6;
+    --color-secondary-text: #9a9a9a;
+    --color-white: #1a1a1a;
+    --color-lighter-gray: #222;
+    --color-light-gray: #2f2f2f;
+    --color-mid-gray: #4a4a4a;
+    --color-dark-gray: #c8c8c8;
+    --color-darker-gray: #f4f4f4;
+    --color-darkgrey: #f4f4f4;
+    --color-black: #fff;
+    --darker-gray-color: #f4f4f4;
+    --background-color: #1a1a1a;
+}
+
+html.dark body {
+    background-color: #121212;
+}
+
+html.dark body:not(.post-template):not(.page-template) {
+    background-image: linear-gradient(0deg, #161616 65%, #1f1f1f);
+}
+
+html.dark .u-shadow:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+html.dark .post-feed .featured .post-link::before {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+html.dark img,
+html.dark video {
+    filter: brightness(0.9);
+}

@@ -1,6 +1,7 @@
 @import "@tryghost/shared-theme-assets/assets/css/v1/screen.css";
 @import "general/fonts.css";
 @import "general/basics.css";
+@import "general/darkmode.css";
 @import "site/header.css";
 @import "site/layout.css";
 @import "site/term.css";

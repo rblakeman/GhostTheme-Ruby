@@ -1,0 +1,35 @@
+<button id="dm-toggle" class="dm-toggle gh-icon-btn" type="button" aria-label="{{t "Toggle dark mode"}}" aria-pressed="false">
+    <svg class="dm-icon dm-icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="dm-icon dm-icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+</button>
+<script>
+(function () {
+    var btn = document.getElementById('dm-toggle');
+    if (!btn) return;
+
+    function isDark() {
+        return document.documentElement.classList.contains('dark');
+    }
+
+    function notifyComments() {
+        var root = document.getElementById('ghost-comments-root');
+        if (root && root.parentElement) {
+            root.parentElement.classList.toggle('dm-parent-flag');
+        }
+    }
+
+    function apply(dark) {
+        document.documentElement.classList.toggle('dark', dark);
+        btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+        notifyComments();
+    }
+
+    btn.setAttribute('aria-pressed', isDark() ? 'true' : 'false');
+
+    btn.addEventListener('click', function () {
+        var next = !isDark();
+        apply(next);
+        document.cookie = 'darkmode-prefered=' + next + ';path=/;max-age=31536000;samesite=lax';
+    });
+})();
+</script>
