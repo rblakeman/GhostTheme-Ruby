@@ -11,11 +11,36 @@
         return document.documentElement.classList.contains('dark');
     }
 
+    function paintIframe(iframe, dark) {
+        try {
+            var doc = iframe.contentDocument;
+            if (!doc || !doc.documentElement) return;
+            doc.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        } catch (e) {}
+    }
+
+    function trackIframe(iframe) {
+        if (iframe.dataset.dmTracked === '1') return;
+        iframe.dataset.dmTracked = '1';
+        var paint = function () { paintIframe(iframe, isDark()); };
+        iframe.addEventListener('load', paint);
+        paint();
+    }
+
+    function syncAllIframes() {
+        document.querySelectorAll('#ghost-comments-root iframe').forEach(trackIframe);
+        var dark = isDark();
+        document.querySelectorAll('#ghost-comments-root iframe').forEach(function (iframe) {
+            paintIframe(iframe, dark);
+        });
+    }
+
     function notifyComments() {
         var root = document.getElementById('ghost-comments-root');
         if (root && root.parentElement) {
             root.parentElement.classList.toggle('dm-parent-flag');
         }
+        syncAllIframes();
     }
 
     function apply(dark) {
@@ -31,5 +56,9 @@
         apply(next);
         document.cookie = 'darkmode-prefered=' + next + ';path=/;max-age=31536000;samesite=lax';
     });
+
+    var iframeHost = document.querySelector('.gh-comments') || document.body;
+    new MutationObserver(syncAllIframes).observe(iframeHost, {childList: true, subtree: true});
+    syncAllIframes();
 })();
 </script>
