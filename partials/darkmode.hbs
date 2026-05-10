@@ -150,7 +150,7 @@
 
           Alternative: hide the disclaimer entirely by injecting this CSS above into the portal iframe instead of replacing the text:
     --}}
-    var SUPPRESSIONS_TEXT = 'Unsubscribing from emails will not affect your access to {{@site.title}}';
+    var SUPPRESSIONS_TEXT = "Unsubscribing from emails will not affect your access to {{{@site.title}}}";
 
     function applyPortalContentOverride(iframe) {
         if (!iframe.closest('#ghost-portal-root')) return;
