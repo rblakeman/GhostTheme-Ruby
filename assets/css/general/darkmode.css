@@ -17,6 +17,13 @@ html.dark .dm-toggle .dm-icon-sun {
 html.dark {
     color-scheme: dark;
 
+    /* Original blue theme ##2d3aff */
+    /* This is to match when custom theme color is set to ##6a2eff */
+    --blakeman-theme-foreground: #694DFF;
+    --blakeman-theme-link: #9D7CFF;
+    --brandcolor: var(--blakeman-theme-foreground);
+    --ghost-accent-color: var(--blakeman-theme-foreground);
+
     --primary-text-color: #e6e6e6;
     --secondary-text-color: #9a9a9a;
     --white-color: #1a1a1a;
@@ -72,4 +79,8 @@ html.dark .gh-btn,
 html.dark .gh-primary-btn,
 html.dark .gh-head-btn.gh-btn {
     color: #fff;
+}
+
+html.dark .gh-content a {
+    color: var(--blakeman-theme-link);
 }

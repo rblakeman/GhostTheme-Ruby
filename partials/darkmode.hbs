@@ -33,6 +33,13 @@
     var PORTAL_OVERRIDE_ID = 'dm-portal-override';
     var PORTAL_OVERRIDE_CSS = [
         ':root{',
+        /* Original blue theme ##2d3aff */
+        /* This is to match when custom theme color is set to ##6a2eff */
+        '--blakeman-theme-foreground: #694DFF;',
+        '--blakeman-theme-link: #9D7CFF;',
+        '--brandcolor: var(--blakeman-theme-foreground);',
+        '--ghost-accent-color: var(--blakeman-theme-foreground);',
+
         '--white:#1a1a1a !important;',
         '--whitergb:26,26,26 !important;',
         '--black:#fff !important;',
@@ -54,7 +61,8 @@
         '--grey14:#1d1d1d !important;',
         '}',
         '.gh-portal-btn-primary{color:#fff !important;}',
-        '.gh-portal-powered a{background:#1d1d1d !important;color:#e6e6e6 !important;}'
+        '.gh-portal-powered a{background:#1d1d1d !important;color:#e6e6e6 !important;}',
+        '.gh-portal-avatar svg{color: var(--blakeman-theme-foreground) !important;}'
     ].join('');
 
     function applySodoOverride(iframe, dark) {
