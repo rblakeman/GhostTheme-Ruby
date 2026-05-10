@@ -109,6 +109,38 @@
         } catch (e) {}
     }
 
+    {{!-- TRIGGER is the floating avatar / Follow button (bottom right) --}}
+    var PORTAL_TRIGGER_OVERRIDE_ID = 'dm-portal-trigger-override';
+    var PORTAL_TRIGGER_OVERRIDE_CSS = [
+        ':root{',
+        /* Original blue theme ##2d3aff */
+        /* This is to match when custom theme color is set to ##6a2eff */
+        '--blakeman-theme-foreground: #694DFF;',
+        '--blakeman-theme-link: #9D7CFF;',
+        '--brandcolor: var(--blakeman-theme-foreground);',
+        '--ghost-accent-color: var(--blakeman-theme-foreground);',
+        '}'
+    ].join('');
+
+    function applyPortalTriggerOverride(iframe, dark) {
+        if (!iframe.closest('#ghost-portal-root')) return;
+        if (iframe.title !== 'portal-trigger') return;
+        try {
+            var doc = iframe.contentDocument;
+            if (!doc || !doc.head) return;
+            var existing = doc.getElementById(PORTAL_TRIGGER_OVERRIDE_ID);
+            if (!dark) {
+                if (existing) existing.remove();
+                return;
+            }
+            if (existing) return;
+            var style = doc.createElement('style');
+            style.id = PORTAL_TRIGGER_OVERRIDE_ID;
+            style.textContent = PORTAL_TRIGGER_OVERRIDE_CSS;
+            doc.head.appendChild(style);
+        } catch (e) {}
+    }
+
     function paintIframe(iframe, dark) {
         try {
             var doc = iframe.contentDocument;
@@ -116,6 +148,7 @@
             doc.documentElement.style.colorScheme = dark ? 'dark' : 'light';
             applySodoOverride(iframe, dark);
             applyPortalOverride(iframe, dark);
+            applyPortalTriggerOverride(iframe, dark);
         } catch (e) {}
     }
 
