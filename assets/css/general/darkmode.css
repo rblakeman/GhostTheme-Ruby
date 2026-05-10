@@ -77,6 +77,7 @@ html.dark .gh-head-btn.gh-btn {
     color: #fff;
 }
 
+/* Markdown links */
 html.dark .gh-content a {
     color: var(--blakeman-theme-link);
 }

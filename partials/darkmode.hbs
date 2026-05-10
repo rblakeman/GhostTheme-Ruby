@@ -42,6 +42,7 @@
         '--brandcolor: var(--blakeman-theme-foreground);',
         '--ghost-accent-color: var(--blakeman-theme-foreground);',
 
+        '--primary-text-color: #e6e6e6;',
         '--white:#1a1a1a !important;',
         '--whitergb:26,26,26 !important;',
         '--black:#fff !important;',
@@ -64,7 +65,11 @@
         '}',
         '.gh-portal-btn-primary{color:#fff !important;}',
         '.gh-portal-powered a{background:#1d1d1d !important;color:#e6e6e6 !important;}',
-        '.gh-portal-avatar svg{color: var(--blakeman-theme-foreground) !important;}'
+        /* Avatar icon (account screen) */
+        '.gh-portal-avatar svg{color: var(--blakeman-theme-foreground) !important;}',
+        /* Checkmark icon (tiers sign up screen) */
+        '.gh-portal-benefit-checkmark path {stroke: var(--primary-text-color);}'
+
     ].join('');
 
     function applySodoOverride(iframe, dark) {
