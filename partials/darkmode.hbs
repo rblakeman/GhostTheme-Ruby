@@ -68,7 +68,9 @@
         /* Avatar icon (account screen) */
         '.gh-portal-avatar svg{color: var(--blakeman-theme-foreground) !important;}',
         /* Checkmark icon (tiers sign up screen) */
-        '.gh-portal-benefit-checkmark path {stroke: var(--primary-text-color);}'
+        '.gh-portal-benefit-checkmark path {stroke: var(--primary-text-color);}',
+        /* Hide "paid" verbiage to avoid confusion. Commented out because there is a workaround to modify the text below in `applyPortalContentOverride()` */
+        /* '.gh-portal-action-footer.gh-feature-suppressions > div:first-child {display: none !important;}', */
 
     ].join('');
 
@@ -141,6 +143,39 @@
         } catch (e) {}
     }
 
+    {{!-- Rewrites the email-preferences disclaimer in the portal popup
+          ("Unsubscribing from emails will not cancel your paid subscription to X"
+          → "Unsubscribing from emails will not affect your access to X").
+          Theme-agnostic; runs in both light and dark mode.
+
+          Alternative: hide the disclaimer entirely by injecting this CSS above into the portal iframe instead of replacing the text:
+    --}}
+    var SUPPRESSIONS_TEXT = 'Unsubscribing from emails will not affect your access to {{@site.title}}';
+
+    function applyPortalContentOverride(iframe) {
+        if (!iframe.closest('#ghost-portal-root')) return;
+        if (iframe.title === 'portal-trigger') return;
+        try {
+            var doc = iframe.contentDocument;
+            if (!doc || !doc.documentElement) return;
+
+            var rewrite = function () {
+                var p = doc.querySelector('footer.gh-portal-action-footer.gh-feature-suppressions > div > p');
+                if (p && p.textContent.trim() !== SUPPRESSIONS_TEXT) {
+                    p.textContent = SUPPRESSIONS_TEXT;
+                }
+            };
+            rewrite();
+
+            {{!-- Flag lives on documentElement (fresh per document) and the
+                  observer is also on documentElement, so iframe srcdoc reloads
+                  and React body remounts both get a live observer. --}}
+            if (doc.documentElement.dataset.dmContentObserved === '1') return;
+            doc.documentElement.dataset.dmContentObserved = '1';
+            new MutationObserver(rewrite).observe(doc.documentElement, {childList: true, subtree: true});
+        } catch (e) {}
+    }
+
     function paintIframe(iframe, dark) {
         try {
             var doc = iframe.contentDocument;
@@ -149,6 +184,7 @@
             applySodoOverride(iframe, dark);
             applyPortalOverride(iframe, dark);
             applyPortalTriggerOverride(iframe, dark);
+            applyPortalContentOverride(iframe);
         } catch (e) {}
     }
 
