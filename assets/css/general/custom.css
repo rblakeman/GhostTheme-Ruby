@@ -1,0 +1,27 @@
+/* Swap sun/moon icon in and out depending on current theme */
+.dm-toggle .dm-icon-sun {
+    display: none;
+}
+.dm-toggle .dm-icon-moon {
+    display: block;
+}
+
+/* Necessary when theme is persistent in nav for mobile layout */
+@media (max-width: 767px) {
+    .gh-head-actions .dm-toggle {
+        display: none;
+    }
+
+    .gh-head-brand .dm-toggle {
+        margin-right: 8px;
+    }
+
+    #gh-head .gh-head-brand {
+        grid-template-columns: 1fr auto auto auto;
+    }
+}
+@media (min-width: 768px) {
+    .gh-head-brand .dm-toggle {
+        display: none;
+    }
+}

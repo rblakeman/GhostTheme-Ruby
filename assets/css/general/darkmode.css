@@ -1,11 +1,3 @@
-.dm-toggle .dm-icon-sun {
-    display: none;
-}
-
-.dm-toggle .dm-icon-moon {
-    display: block;
-}
-
 html.dark .dm-toggle .dm-icon-moon {
     display: none;
 }
