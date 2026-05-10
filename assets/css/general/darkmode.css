@@ -60,11 +60,15 @@ html.dark video {
     filter: brightness(0.9);
 }
 
+html.dark .gh-dropdown {
+    background-color: var(--background-color);
+}
+
 html.dark .gh-head-logo,
 html.dark .gh-head-logo a,
 html.dark .gh-head .nav a,
 html.dark .gh-head-link {
-    color: var(--color-primary-text);
+    color: var(--color-primary-text) !important;
 }
 
 html.dark .gh-btn,
