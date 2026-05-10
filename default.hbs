@@ -32,6 +32,9 @@
                     <a class="gh-head-logo" href="{{@site.url}}">
                         {{#if @site.logo}}
                             <img src="{{@site.logo}}" alt="{{@site.title}}">
+                        {{else if @site.icon}}
+                            <img class="gh-head-icon" src="{{@site.icon}}" alt="">
+                            {{@site.title}}
                         {{else}}
                             {{@site.title}}
                         {{/if}}
