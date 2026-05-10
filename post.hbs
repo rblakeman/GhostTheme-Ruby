@@ -34,7 +34,16 @@
         {{else}}
 
             <div class="gh-content gh-canvas">
-                <p>This post has restricted access. <a href="#/portal/signin" data-portal="signin">Sign in</a> or <a href="#/portal/signup" data-portal="signup">sign up</a> to view it.</p>
+                {{!-- User is logged in but lacks permission to view  --}}
+                {{#if @member}}
+                    <section class="error-content">
+                        <p class="error-message">Unable to view this post</p>
+                        <a href="{{@site.url}}">Go home</a>
+                    </section>
+                {{!-- User is logged out and tried to access a non-public post --}}
+                {{else}}
+                    <p>This post has restricted access. <a href="#/portal/signin" data-portal="signin">Sign in</a> or <a href="#/portal/signup" data-portal="signup">sign up</a> to view it.</p>
+                {{/if}}
             </div>
 
         {{/if}}
