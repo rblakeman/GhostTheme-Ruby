@@ -1,3 +1,4 @@
+{{!-- See README.md, originally forked from ghost/core/core/server/services/email-rendering/partials/email-wrapper.hbs --}}
 <!doctype html>
 <html lang="{{site.locale}}" dir="{{site.direction}}">
     <head>
@@ -90,13 +91,6 @@
                                                     </table>
                                                 </td>
                                             </tr>
-                                            {{#if (and newsletter.showExcerpt post.customExcerpt)}}
-                                                <tr>
-                                                    <td class="post-excerpt-wrapper" style="width: 100%">
-                                                        <p class="{{classes.excerpt}}">{{post.customExcerpt}}</p>
-                                                    </td>
-                                                </tr>
-                                            {{/if}}
                                             <tr>
                                                 <td width="100%" style="width: 100%" align="center">
                                                     <table class="post-meta-wrapper" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 32px;">
@@ -144,6 +138,14 @@
                                                     </td>
                                                 </tr>
                                             {{/if}}
+                                        {{/if}}
+
+                                        {{#if (and newsletter.showExcerpt post.customExcerpt)}}
+                                            <tr>
+                                                <td class="post-excerpt-wrapper" style="width: 100%">
+                                                    <p class="{{classes.excerpt}}">{{post.customExcerpt}}</p>
+                                                </td>
+                                            </tr>
                                         {{/if}}
                                     </table>
                                 </td>
