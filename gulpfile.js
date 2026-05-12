@@ -93,6 +93,7 @@ function zipper(done) {
             '**',
             '!node_modules', '!node_modules/**',
             '!dist', '!dist/**',
+            '!ghost-overrides', '!ghost-overrides/**',
             '!yarn-error.log'
         ]),
         zip(filename),
