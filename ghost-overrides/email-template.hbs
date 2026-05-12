@@ -1,16 +1,13 @@
+{{!-- See README.md, originally forked from ghost/core/core/server/services/email-service/email-templates/template.hbs --}}
 {{#> emailWrapper}}
                             <tr>
-                                <td class="wrapper">
-                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" data-testid="email-preview-content">
-                                        <tr class="post-content-row">
-                                            <td class="{{classes.body}}">
-                                                <!-- POST CONTENT START -->
-                                                {{{html}}}
-                                                <!-- POST CONTENT END -->
-
-                                                {{#if paywall}}
-                                                    {{>paywall}}
-                                                {{/if}}
+                                <td class="wrapper" align="center" style="padding-top: 8px; padding-bottom: 40px;">
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td align="center" style="border-radius: {{buttonBorderRadius}}; background-color: {{buttonColor}};">
+                                                <a href="{{post.url}}" style="display: inline-block; padding: 14px 28px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 600; color: {{buttonTextColor}}; text-decoration: none; border-radius: {{buttonBorderRadius}};">
+                                                    See the full post &rarr;
+                                                </a>
                                             </td>
                                         </tr>
                                     </table>
