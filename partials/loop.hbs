@@ -31,9 +31,11 @@
 
     <div class="post-wrapper">
         <header class="post-header">
-            {{#primary_tag}}
+            {{!-- Replaced tag with date --}}
+            {{!-- {{#primary_tag}}
                 <span class="post-tag">{{name}}</span>
-            {{/primary_tag}}
+            {{/primary_tag}} --}}
+            <span class="post-tag">{{date published_at format="MMM DD, YYYY"}}</span>
 
             <h2 class="post-title">
                 {{title}}
