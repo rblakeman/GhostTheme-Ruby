@@ -51,7 +51,26 @@
     </article>
 
     {{#if access}}
-        {{> "post-navigation"}}
+        {{!-- Navigation with prev/next hidden to prevent exposing inaccessible post titles/links --}}
+        <div class="gh-canvas">
+            <div class="navigation">
+                {{!-- Keep 'prev' & 'next' elements to retain 'Share' center styling --}}
+                <div class="navigation-previous-wrapper">
+                    {{!-- <a class="navigation-item navigation-previous" href="/">
+                        <span class="navigation-label"></span>
+                        <h4 class="navigation-title"></h4>
+                    </a> --}}
+                </div>
+                <div class="navigation-middle">
+                    <a href="#/share" class="gh-button-share">{{t "Share"}} {{> "icons/share"}}</a>
+                <div class="navigation-next-wrapper">
+                    {{!-- <a class="navigation-item navigation-next" href="/">
+                        <span class="navigation-label"></span>
+                        <h4 class="navigation-title"></h4>
+                    </a> --}}
+                </div>
+            </div>
+        </div>
     {{/if}}
 
     {{#if comments}}
